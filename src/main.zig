@@ -72,15 +72,15 @@ pub fn main() !void {
         error.OsInstanceCreationError,
     );
 
-    var notepad_proc_inst: mf.ProcessInstance = undefined;
+    var proc_inst: mf.ProcessInstance = undefined;
 
     while (true) {
         // Search for the target process name
         mf.tryError(
             mf.mf_osinstance_process_by_name(
                 &os_instance,
-                mf.slice("notepad.exe"),
-                &notepad_proc_inst,
+                mf.slice("msedge.exe"),
+                &proc_inst,
             ),
             error.MemflowProcessLookupError,
         ) catch {
@@ -92,19 +92,40 @@ pub fn main() !void {
         break;
     }
 
-    const calc_proc_info: *const mf.ProcessInfo = mf.mf_processinstance_info(&notepad_proc_inst) orelse {
+    const calc_proc_info: *const mf.ProcessInfo = mf.mf_processinstance_info(&proc_inst) orelse {
         logger.err("Failed to find process. Are you sure it's running?", .{});
         return error.MemflowProcessInfoError;
     };
     logger.info("Found process as PID {}", .{calc_proc_info.pid});
 
-    var calc_mod_info: mf.ModuleInfo = undefined;
+    var proc_mod_info: mf.ModuleInfo = undefined;
     logger.debug("Looking up main module info of process", .{});
     try mf.tryError(
-        mf.mf_intoprocessinstance_primary_module(
-            &notepad_proc_inst,
-            &calc_mod_info,
+        mf.mf_processinstance_primary_module(
+            &proc_inst,
+            &proc_mod_info,
         ),
         error.MemflowModuleLookupError,
     );
+
+    logger.debug("Enumerating exports:", .{});
+    try mf.tryError(
+        mf.mf_processinstance_module_export_list_callback(
+            @ptrCast(*anyopaque, &proc_inst),
+            &proc_mod_info,
+            .{
+                .context = null,
+                .func = struct {
+                    fn _(context: ?*anyopaque, export_info: mf.ExportInfo) callconv(.C) bool {
+                        _ = context;
+                        logger.debug("\tExport: {s}", .{export_info.name});
+
+                        return true;
+                    }
+                }._,
+            },
+        ),
+        error.ModuleExportListCallbackError,
+    );
+    logger.debug("Enumeration complete", .{});
 }
