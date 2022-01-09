@@ -108,6 +108,8 @@ pub fn main() !void {
         error.MemflowModuleLookupError,
     );
 
+    std.time.sleep(std.time.ns_per_s * 10);
+
     logger.debug("Enumerating exports:", .{});
     try mf.tryError(
         mf.mf_processinstance_module_export_list_callback(

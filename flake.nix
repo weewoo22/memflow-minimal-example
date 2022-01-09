@@ -5,28 +5,40 @@
     memflow.url = github:memflow/memflow-nixos;
   };
 
-  outputs = { self, nixpkgs, flake-utils, zig-overlay, memflow, ... } @ inputs:
+  outputs = { self, nixpkgs, flake-utils, zig-overlay, ... } @ inputs:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
           inherit system;
         };
         lib = pkgs.lib;
+
+        # Collect overridden package outputs into this variable
+        memflowPkgs = builtins.mapAttrs
+          (package: previous:
+            (previous.overrideAttrs
+              (super: {
+                dontStrip = true;
+                buildType = "debug";
+              })
+            )
+          )
+          inputs.memflow.packages.${system};
       in
       {
 
         devShell = pkgs.mkShell {
-          MEMFLOW_CONNECTOR_INVENTORY_PATHS = lib.concatStringsSep ";" [
-            "${memflow.packages.${system}.memflow-kvm}/lib/" # KVM Connector
-            "${memflow.packages.${system}.memflow-win32}/lib/" # Win32 Connector plugin
+          MEMFLOW_CONNECTOR_INVENTORY_PATHS = with memflowPkgs; lib.concatStringsSep ";" [
+            "${memflow-kvm}/lib/" # KVM Connector
+            "${memflow-win32}/lib/" # Win32 Connector plugin
           ];
-          nativeBuildInputs = with pkgs; [
+          nativeBuildInputs = with pkgs; with memflowPkgs; [
             zig-overlay.packages.${system}.master.latest # Zig compiler
-            memflow.packages.${system}.memflow
-            memflow.packages.${system}.memflow-kvm
-            # pkg-config
+            memflow
+            memflow-kvm
           ];
         };
 
-      });
+      }
+    );
 }
