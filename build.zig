@@ -25,6 +25,15 @@ pub fn build(builder: *std.build.Builder) void {
 
     exe.install();
 
+    const guest_proc = builder.addExecutable("guest_proc", "src/guest_proc.zig");
+    guest_proc.rdynamic = true;
+    guest_proc.setTarget(.{
+        .cpu_arch = .x86_64,
+        .os_tag = .windows,
+    });
+    guest_proc.setBuildMode(mode);
+    guest_proc.install();
+
     const run_cmd = exe.run();
     run_cmd.step.dependOn(builder.getInstallStep());
     if (builder.args) |args| {

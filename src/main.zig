@@ -79,7 +79,7 @@ pub fn main() !void {
         mf.tryError(
             mf.mf_osinstance_process_by_name(
                 &os_instance,
-                mf.slice("msedge.exe"),
+                mf.slice("guest_proc.exe"),
                 &proc_inst,
             ),
             error.MemflowProcessLookupError,
