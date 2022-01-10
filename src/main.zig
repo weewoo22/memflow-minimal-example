@@ -85,7 +85,7 @@ pub fn main() !void {
             error.MemflowProcessLookupError,
         ) catch {
             logger.info("Waiting for guest process...", .{});
-            std.time.sleep(std.time.ns_per_s * 1);
+            std.time.sleep(1 * std.time.ns_per_s);
             continue;
         };
 

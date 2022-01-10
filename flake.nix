@@ -15,8 +15,8 @@
 
         # Collect overridden package outputs into this variable
         memflowPkgs = builtins.mapAttrs
-          (package: previous:
-            (previous.overrideAttrs
+          (name: package:
+            (package.overrideAttrs
               (super: {
                 dontStrip = true;
                 buildType = "debug";
