@@ -67,11 +67,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1641778767,
-        "narHash": "sha256-eNobRHK5Geok4KnKnovJydFmoAqJLW9MktPcLQcKAMA=",
+        "lastModified": 1641867562,
+        "narHash": "sha256-3qkrz0PFsMUncNO+lgQnybuZHBRxsBvkcNESPlKW4Qk=",
         "owner": "memflow",
         "repo": "memflow-nixos",
-        "rev": "863737db846db02163be2420a0b19bd9958f34bf",
+        "rev": "ceafc40f37bbb34b5ea0f3db4bfc9a855238c56e",
         "type": "github"
       },
       "original": {
