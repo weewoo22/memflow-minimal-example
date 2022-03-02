@@ -25,7 +25,6 @@
           inputs.memflow.packages.${system};
       in
       {
-
         devShell = pkgs.mkShell {
           MEMFLOW_CONNECTOR_INVENTORY_PATHS = with memflowPkgs; lib.concatStringsSep ";" [
             "${memflow-kvm}/lib/" # KVM Connector
@@ -33,11 +32,10 @@
           ];
           nativeBuildInputs = with pkgs; with memflowPkgs; [
             zig-overlay.packages.${system}.master.latest # Zig compiler
+            pkg-config
             memflow
-            memflow-kvm
           ];
         };
-
       }
     );
 }
