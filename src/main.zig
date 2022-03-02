@@ -7,6 +7,8 @@ pub const log_level: std.log.Level = .debug;
 
 const mf = @import("./memflow.zig");
 
+var proc_inst: mf.ProcessInstance = undefined;
+
 pub fn main() !void {
     const allocator = std.testing.allocator;
 
@@ -72,8 +74,6 @@ pub fn main() !void {
         error.OsInstanceCreationError,
     );
 
-    var proc_inst: mf.ProcessInstance = undefined;
-
     while (true) {
         // Search for the target process name
         mf.tryError(
@@ -130,4 +130,24 @@ pub fn main() !void {
         error.ModuleExportListCallbackError,
     );
     logger.debug("Enumeration complete", .{});
+
+    var random_export_name: [4:'\x00']u8 = undefined;
+    try read(&random_export_name, proc_mod_info.base + 0x1ade3e);
+
+    std.debug.print("Random export name: {s}", .{random_export_name});
+}
+
+/// Externally read object from the guest game process at given virtual address
+pub fn read(object: anytype, address: usize) !void {
+    mf.tryError(
+        mf.mf_processinstance_read_raw_into(
+            &proc_inst,
+            address,
+            .{
+                .data = @ptrCast([*c]u8, object),
+                .len = @sizeOf(@typeInfo(@TypeOf(object)).Pointer.child),
+            },
+        ),
+        error.MemflowReadRawError,
+    ) catch {};
 }

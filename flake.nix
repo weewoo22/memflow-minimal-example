@@ -1,8 +1,7 @@
 {
   inputs = {
-    flake-utils.url = github:numtide/flake-utils;
     zig-overlay.url = github:arqv/zig-overlay;
-    memflow.url = github:memflow/memflow-nixos;
+    memflow.url = github:weewoo22/memflow-nixos;
   };
 
   outputs = { self, nixpkgs, flake-utils, zig-overlay, ... } @ inputs:

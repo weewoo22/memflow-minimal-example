@@ -1,33 +1,63 @@
 {
   "nodes": {
-    "flake-utils": {
+    "cglue-bindgen": {
+      "flake": false,
       "locked": {
-        "lastModified": 1638122382,
-        "narHash": "sha256-sQzZzAbvKEqN9s0bzWuYmRaA03v40gaJ4+iL1LXjaeI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "74f7e4319258e287b0f9cb95426c9853b282730b",
+        "lastModified": 1645355609,
+        "narHash": "sha256-h86oUZT2A8UDCxA2mRjBTSDHUvKhv+LOUn2OIhuX+1E=",
+        "owner": "h33p",
+        "repo": "cglue",
+        "rev": "e6761fce0b596ef16494194be40316135568cf21",
         "type": "github"
       },
       "original": {
+        "owner": "h33p",
+        "repo": "cglue",
+        "type": "github"
+      }
+    },
+    "cloudflow": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645908412,
+        "narHash": "sha256-SiIrYBi3up7PXQBPnmscQcI5saRUC6SEBqTBJCIq9rQ=",
+        "owner": "weewoo22",
+        "repo": "cloudflow",
+        "rev": "6c9194c3f87e61984e2a1f20453df7a615d0eda0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "weewoo22",
+        "repo": "cloudflow",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
         "owner": "numtide",
         "repo": "flake-utils",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
         "type": "github"
+      },
+      "original": {
+        "id": "flake-utils",
+        "type": "indirect"
       }
     },
     "flake-utils_2": {
       "locked": {
-        "lastModified": 1638122382,
-        "narHash": "sha256-sQzZzAbvKEqN9s0bzWuYmRaA03v40gaJ4+iL1LXjaeI=",
+        "lastModified": 1644229661,
+        "narHash": "sha256-1YdnJAsNy69bpcjuoKdOYQX0YxZBiCYZo4Twxerqv7k=",
         "owner": "numtide",
         "repo": "flake-utils",
-        "rev": "74f7e4319258e287b0f9cb95426c9853b282730b",
+        "rev": "3cecb5b042f7f209c56ffd8371b2711a290ec797",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
+        "id": "flake-utils",
+        "type": "indirect"
       }
     },
     "flake-utils_3": {
@@ -62,31 +92,155 @@
     },
     "memflow": {
       "inputs": {
+        "cglue-bindgen": "cglue-bindgen",
+        "cloudflow": "cloudflow",
         "flake-utils": "flake-utils_2",
+        "memflow": "memflow_2",
+        "memflow-coredump": "memflow-coredump",
+        "memflow-kcore": "memflow-kcore",
+        "memflow-kvm": "memflow-kvm",
+        "memflow-native": "memflow-native",
+        "memflow-qemu": "memflow-qemu",
+        "memflow-win32": "memflow-win32",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1641867562,
-        "narHash": "sha256-3qkrz0PFsMUncNO+lgQnybuZHBRxsBvkcNESPlKW4Qk=",
-        "owner": "memflow",
+        "lastModified": 1646180705,
+        "narHash": "sha256-AU800ndK1FxwI/2/fmPzfpjN5kzQ1TKJ9PghYZ7YBgo=",
+        "owner": "weewoo22",
         "repo": "memflow-nixos",
-        "rev": "ceafc40f37bbb34b5ea0f3db4bfc9a855238c56e",
+        "rev": "d74e9cd094aba87ce2fe6bdfe38a54efa98b1ea8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "weewoo22",
+        "repo": "memflow-nixos",
+        "type": "github"
+      }
+    },
+    "memflow-coredump": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645908889,
+        "narHash": "sha256-Ul8yZXcDloshkZKGLwv3Aicvc29pLvwk24q4aq8czcc=",
+        "owner": "weewoo22",
+        "repo": "memflow-coredump",
+        "rev": "27241f7535906140477340ef71f6e66a3bf2ea90",
+        "type": "github"
+      },
+      "original": {
+        "owner": "weewoo22",
+        "repo": "memflow-coredump",
+        "type": "github"
+      }
+    },
+    "memflow-kcore": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645547894,
+        "narHash": "sha256-rKI1WDQTnnlAl6WfcAQa6tVwZzr9DKbvfK77xfhIMzI=",
+        "owner": "memflow",
+        "repo": "memflow-kcore",
+        "rev": "88183a40873943ec48d66e880f1227c1c51706c6",
         "type": "github"
       },
       "original": {
         "owner": "memflow",
-        "repo": "memflow-nixos",
+        "repo": "memflow-kcore",
+        "type": "github"
+      }
+    },
+    "memflow-kvm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645359404,
+        "narHash": "sha256-PndW8pOb4WFubKcCUND/ahrhgLg70Yuy+lPwchsi5Zc=",
+        "ref": "main",
+        "rev": "4050f1a12b93c5718c08419847977892b518c05d",
+        "revCount": 83,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/memflow/memflow-kvm.git"
+      },
+      "original": {
+        "ref": "main",
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/memflow/memflow-kvm.git"
+      }
+    },
+    "memflow-native": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645547695,
+        "narHash": "sha256-8e5T0vqHo2yCcEf9+05ZFg5kMJPxyJl5aJH3LODOW6w=",
+        "owner": "memflow",
+        "repo": "memflow-native",
+        "rev": "0ef63477f6481e36f4b80f8ecf4dd86387fae9c7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "memflow",
+        "repo": "memflow-native",
+        "type": "github"
+      }
+    },
+    "memflow-qemu": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645578684,
+        "narHash": "sha256-6PMv1c0kXcicpBp3s9Lgct1sNjhJ4bRCFhqnzYnfBFY=",
+        "owner": "memflow",
+        "repo": "memflow-qemu",
+        "rev": "feabf1b26cfa2fa9f7cd2036c755ca3d8dccdc9f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "memflow",
+        "repo": "memflow-qemu",
+        "type": "github"
+      }
+    },
+    "memflow-win32": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645742620,
+        "narHash": "sha256-wHM99jP+S5CfWrucQekuSI+/DnxWL8WSioR7PXSVbAQ=",
+        "owner": "memflow",
+        "repo": "memflow-win32",
+        "rev": "9872465e3df223b565af7fd105ff7f095c504e80",
+        "type": "github"
+      },
+      "original": {
+        "owner": "memflow",
+        "repo": "memflow-win32",
+        "type": "github"
+      }
+    },
+    "memflow_2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645573610,
+        "narHash": "sha256-Q2D1HWM3zPGWqTVK/auCC1FXHjeMBAQwQW8WIV52L8Q=",
+        "owner": "memflow",
+        "repo": "memflow",
+        "rev": "8d2d7ff4c5c80a583306289225d427a59721f30c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "memflow",
+        "repo": "memflow",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1641726770,
-        "narHash": "sha256-7Wk3V+/gNbQ4/5LgGQz9KVSwSw3V/L3+iqgH8+G/6V0=",
+        "lastModified": 1645937171,
+        "narHash": "sha256-n9f9GZBNMe8UMhcgmmaXNObkH01jjgp7INMrUgBgcy4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "27d2fe1e69deb1894f9113a1fe2ca43fb89c8ad1",
+        "rev": "22dc22f8cedc58fcb11afe1acb08e9999e78be9c",
         "type": "github"
       },
       "original": {
@@ -112,11 +266,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1641726770,
-        "narHash": "sha256-7Wk3V+/gNbQ4/5LgGQz9KVSwSw3V/L3+iqgH8+G/6V0=",
+        "lastModified": 1645937171,
+        "narHash": "sha256-n9f9GZBNMe8UMhcgmmaXNObkH01jjgp7INMrUgBgcy4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "27d2fe1e69deb1894f9113a1fe2ca43fb89c8ad1",
+        "rev": "22dc22f8cedc58fcb11afe1acb08e9999e78be9c",
         "type": "github"
       },
       "original": {
@@ -154,11 +308,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1641696140,
-        "narHash": "sha256-Q7bQ0MSq201ah4Q+3SznEmMR4Kn9pY6ta8pL6KAjZ78=",
+        "lastModified": 1646101640,
+        "narHash": "sha256-zbjkfr4CymAnKY5MKoGfncTcBvero49pUEV+hzdQtF4=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "a1b1977429de5d69a332dd87700ffb00525335f9",
+        "rev": "7e9f7b17e523ae93c12b678d94c66700f37e21bc",
         "type": "github"
       },
       "original": {
@@ -173,11 +327,11 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1641774526,
-        "narHash": "sha256-U1jweARfp2k6wnAT8jfgpQI5JUN8+69MGEklJdVBU94=",
+        "lastModified": 1646094950,
+        "narHash": "sha256-E2be+Ko352e0KK61qbV2Qu50bCTma1m1V2zrOkhzcDo=",
         "owner": "arqv",
         "repo": "zig-overlay",
-        "rev": "780336e439b1093dcfba8f7ffeba1f51fd36c57d",
+        "rev": "1284dcf000d7ce87596dffd54da29bf053882d3e",
         "type": "github"
       },
       "original": {
